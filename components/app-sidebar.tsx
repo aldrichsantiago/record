@@ -74,7 +74,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarGroup>
           <SidebarMenu>
             {data.navMain.map((item, index) => (
-              <>
+              <div key={index}>
               {item.items ? (<>
               <Collapsible
                 key={item.title}
@@ -115,7 +115,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               </SidebarMenuItem>
               </>)}
               
-              </>
+              </div>
 
             ))}
           </SidebarMenu>
