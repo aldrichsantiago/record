@@ -1,5 +1,5 @@
 import * as React from "react"
-import { GalleryVerticalEnd, Minus, Plus } from "lucide-react"
+import { ChevronDown, ChevronRight, GalleryVerticalEnd, Minus, Plus } from "lucide-react"
 
 import {
   Collapsible,
@@ -20,27 +20,28 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar"
 import Image from "next/image"
+import Link from "next/link"
 
 // This is sample data.
 const data = {
   navMain: [
     {
       title: "Dashboard",
-      url: "#",
+      url: "/dashboard",
     },
     {
       title: "Accounts",
-      url: "#",
+      url: "/accounts",
     },
     {
       title: "Transactions",
-      url: "#",
+      url: "/transactions",
     },
     {
       title: "Report",
       url: "#",
       items:[ {title: "Report",
-      url: "#", isActive: true,},]
+      url: "/login", isActive: true,},]
     },
   ],
 }
@@ -83,10 +84,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               >
                 <SidebarMenuItem>
                   <CollapsibleTrigger asChild>
-                    <SidebarMenuButton>
+                    <SidebarMenuButton className="w-full cursor-pointer">
                       {item.title}{" "}
-                      <Plus className="ml-auto group-data-[state=open]/collapsible:hidden" />
-                      <Minus className="ml-auto group-data-[state=closed]/collapsible:hidden" />
+                      <ChevronRight className="ml-auto group-data-[state=open]/collapsible:hidden" />
+                      <ChevronDown className="ml-auto group-data-[state=closed]/collapsible:hidden" />
                     </SidebarMenuButton>
                   </CollapsibleTrigger>
                   {item?.items?.length ? (
@@ -98,7 +99,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                               asChild
                               isActive={item.isActive}
                             >
-                              <a href={item.url}>{item.title}</a>
+                              <Link href={item.url}>{item.title}</Link>
                             </SidebarMenuSubButton>
                           </SidebarMenuSubItem>
                         ))}
@@ -108,9 +109,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 </SidebarMenuItem>
               </Collapsible>
               </>) : (<>
-              <SidebarMenuItem>
-                <SidebarMenuButton>
-                  {item.title}{" "}
+              <SidebarMenuItem key={item.title}>
+                <SidebarMenuButton className="w-full" asChild>
+                  <Link href={item.url}>{item.title}</Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
               </>)}
