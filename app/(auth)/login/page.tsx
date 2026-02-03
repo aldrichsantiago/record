@@ -22,12 +22,12 @@ export default function Login() {
         <CardTitle className="flex justify-center">
         <Image
         src="/record.png"
-        alt="Picture of the author"
+        alt="Record Logo"
         width={100}
         height={100}
       /></CardTitle>
-        <CardDescription className="text-center">
-          Login to your account
+        <CardDescription className="text-center text-xs">
+          All transactions in one place.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -38,7 +38,7 @@ export default function Login() {
               <Input
                 id="email"
                 type="email"
-                placeholder="aldrich@email.com"
+                placeholder="example@email.com"
                 required
               />
             </div>
