@@ -21,7 +21,7 @@ export default function Login() {
       <CardHeader >
         <CardTitle className="flex justify-center">
         <Image
-        src="/record.png"
+        src="/bnw_reCord.png"
         alt="Record Logo"
         width={100}
         height={100}
