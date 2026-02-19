@@ -1,30 +1,30 @@
 CREATE TABLE "permissions" (
-	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
+	"id" integer PRIMARY KEY NOT NULL,
 	"key" text NOT NULL,
 	"description" text,
 	CONSTRAINT "permissions_key_unique" UNIQUE("key")
 );
 --> statement-breakpoint
 CREATE TABLE "role_permissions" (
-	"role_id" uuid NOT NULL,
-	"permission_id" uuid NOT NULL,
+	"role_id" integer NOT NULL,
+	"permission_id" integer NOT NULL,
 	CONSTRAINT "role_permissions_role_id_permission_id_pk" PRIMARY KEY("role_id","permission_id")
 );
 --> statement-breakpoint
 CREATE TABLE "roles" (
-	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
+	"id" integer PRIMARY KEY NOT NULL,
 	"name" text NOT NULL,
 	CONSTRAINT "roles_name_unique" UNIQUE("name")
 );
 --> statement-breakpoint
 CREATE TABLE "user_roles" (
-	"user_id" uuid NOT NULL,
-	"role_id" uuid NOT NULL,
+	"user_id" integer NOT NULL,
+	"role_id" integer NOT NULL,
 	CONSTRAINT "user_roles_user_id_role_id_pk" PRIMARY KEY("user_id","role_id")
 );
 --> statement-breakpoint
 CREATE TABLE "users" (
-	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
+	"id" integer PRIMARY KEY NOT NULL,
 	"email" text NOT NULL,
 	"name" text,
 	"created_at" timestamp DEFAULT now(),

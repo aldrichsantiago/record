@@ -1,6 +1,6 @@
-import { pgTable, uuid, text } from 'drizzle-orm/pg-core';
+import { pgTable, integer, text } from 'drizzle-orm/pg-core';
 
 export const roles = pgTable('roles', {
-  id: uuid('id').defaultRandom().primaryKey(),
+  id: integer('id').primaryKey(),
   name: text('name').notNull().unique(), // admin, finance, user
 });

@@ -1,68 +1,11 @@
-import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import Image from "next/image"
+import { LoginForm } from "@/components/login/login-form";
 
-export default function Login() {
-
-    
+export default function LoginPage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-muted p-4">
-    <Card className="w-full max-w-sm">
-      <CardHeader >
-        <CardTitle className="flex justify-center">
-        <Image
-        src="/bnw_reCord.png"
-        alt="Record Logo"
-        width={100}
-        height={100}
-      /></CardTitle>
-        <CardDescription className="text-center text-xs">
-          All transactions in one place.
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <form>
-          <div className="flex flex-col gap-6">
-            <div className="grid gap-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="example@email.com"
-                required
-              />
-            </div>
-            <div className="grid gap-2">
-              <div className="flex items-center">
-                <Label htmlFor="password">Password</Label>
-                <a
-                  href="#"
-                  className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
-                >
-                  Forgot your password?
-                </a>
-              </div>
-              <Input id="password" type="password" required />
-            </div>
-          </div>
-        </form>
-      </CardContent>
-      <CardFooter className="flex-col gap-2">
-        <Button type="submit" className="w-full">
-          Login
-        </Button>
-      </CardFooter>
-    </Card>
+    <div className="bg-muted flex min-h-svh flex-col items-center justify-center p-6 md:p-10">
+      <div className="w-full max-w-sm md:max-w-4xl">
+        <LoginForm />
+      </div>
     </div>
   )
 }

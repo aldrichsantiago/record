@@ -1,8 +1,11 @@
-import { AppSidebar } from "@/components/app-sidebar";
-import { SidebarProvider } from "@/components/ui/sidebar";
+import Link from "next/link";
 
 export default function Home() {
+
   return (
-<></>
+    <>
+      <Link href={`/dashboard`}>Go to Dashboard</Link>
+      {/* Hello */}
+    </>
   );
 }

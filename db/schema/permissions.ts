@@ -1,7 +1,7 @@
-import { pgTable, uuid, text } from 'drizzle-orm/pg-core';
+import { pgTable, integer, text } from 'drizzle-orm/pg-core';
 
 export const permissions = pgTable('permissions', {
-  id: uuid('id').defaultRandom().primaryKey(),
+  id: integer('id').primaryKey(),
   key: text('key').notNull().unique(), // wallet.read
   description: text('description'),
 });
