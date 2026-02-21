@@ -9,7 +9,6 @@ import {
   FieldError,
   FieldGroup,
   FieldLabel,
-  FieldSeparator,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
@@ -18,32 +17,25 @@ import * as z from "zod";
 import { toast } from "sonner";
 import { Controller, useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
+import { loginSchema } from "@/lib/validations/auth";
+import Image from "next/image";
+import { useRouter } from "next/dist/client/components/navigation";
 
-const formSchema = z.object({
-  email: z.string().email("Please enter a valid email address."),
-  password: z
-    .string()
-    .min(6, "Password must be at least 6 characters.")
-    .max(100, "Password must be at most 100 characters."),
-});
-
-type FormData = z.infer<typeof formSchema>;
+type FormData = z.infer<typeof loginSchema>;
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
   const form = useForm<FormData>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
       password: "",
     },
   });
+  const router = useRouter();
 
-  /**
-   * 🔥 TanStack Query Mutation
-   */
   const loginMutation = useMutation({
     mutationFn: async (data: FormData) => {
       const res = await fetch("/api/login", {
@@ -66,7 +58,10 @@ export function LoginForm({
 
     toast.promise(promise, {
       loading: "Logging in...",
-      success: "Login successful 🎉",
+      success: (res) => {
+        router.push("/dashboard");
+        return res.message || "Login successful 🎉"
+      },
       error: (err) => err.message || "Invalid credentials",
       position: "top-center"
     });
@@ -158,9 +153,11 @@ export function LoginForm({
 
           {/* IMAGE SIDE */}
           <div className="bg-muted relative hidden md:block">
-            <img
-              src={"./bnw_reCord.png"}
+            <Image
+              src={"/bnw_reCord.png"}
               alt="Image"
+              width={100}
+              height={100}
               className="absolute inset-0 p-24 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale bg-gray-50 rounded-xl"
             />
           </div>
