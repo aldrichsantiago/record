@@ -29,7 +29,7 @@ export function LoginForm({
 }: React.ComponentProps<"div">) {
   const form = useForm<FormData>({
     resolver: zodResolver(loginSchema),
-    defaultValues: {
+    defaultValues:   {
       email: "",
       password: "",
     },
@@ -66,6 +66,8 @@ export function LoginForm({
       position: "top-center"
     });
   }
+
+
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card className="overflow-hidden p-0">

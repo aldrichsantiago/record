@@ -17,7 +17,7 @@ export async function POST(req: Request) {
     }
     
     const { email, password } = validated.data
-    const token = "fake-jwt-token"
+    const token = process.env.JWT_SECRET!
 
     /**
      * 🔥 Replace this with real DB check
@@ -33,10 +33,7 @@ export async function POST(req: Request) {
       )
     }
 
-    /**
-     * 🔐 Set HTTP-only cookie
-     */
-    (await cookies()).set("auth_token", token, {
+    (await cookies()).set("access_token", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
