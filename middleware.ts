@@ -1,12 +1,15 @@
 import { NextRequest, NextResponse } from "next/server"
 import { verifyToken } from "@/lib/auth/verify-token"
 
-const PUBLIC_ROUTES = ["/login"]
-
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
-  if (PUBLIC_ROUTES.includes(pathname)) {
+  if (
+    pathname === "/login" ||
+    pathname === "/signup" ||
+    pathname.startsWith("/api/login") ||
+    pathname.startsWith("/api/signup")
+  ) {
     return NextResponse.next()
   }
 
@@ -26,5 +29,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/api/:path*"],
+  matcher: ["/dashboard", "/dashboard/:path*", "/api/:path*"],
 }

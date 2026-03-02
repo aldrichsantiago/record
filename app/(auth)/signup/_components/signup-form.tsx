@@ -66,7 +66,7 @@ export function SignupForm({
         router.push("/dashboard");
         return res.message || "Signup successful 🎉"
       },
-      error: (err) => err.message || "Invalid credentials",
+      error: (err) => err.message || "Something went wrong",
       position: "top-center"
     });
   }

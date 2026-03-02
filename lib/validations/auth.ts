@@ -15,6 +15,7 @@ export const loginSchema = z.object({
 export const registerSchema = z.object({
   name: z
     .string()
+    .min(1, "Name is required")
     .trim(),
   email: z
     .string()
